@@ -2,13 +2,13 @@ import numpy as np
 import os, time
 from utils import read_txt, write_txt
 
-# test_path = 'ori_log/demo_d_current_pop-01-24.txt'
-# test_path = 'ori_log/demo_d_new_population-01-24.txt'
-test_path = 'ori_log/demo_c_current_pop-01-30.txt'
+# test_path = 'data_analysis/log/ori_log/demo_d_current_pop-02-01.txt'
+test_path = 'data_analysis/log/ori_log/demo_d_new_population-02-01.txt'
+# test_path = 'data_analysis/log/ori_log/demo_c_current_pop-01-30.txt'
 new_name = os.path.basename(test_path).split('.')[0] + '_format.txt'
 format_save_path = os.path.join(os.path.dirname(test_path), new_name)
 
-save_path = os.path.join('log', os.path.basename(test_path))
+save_path = os.path.join('data_analysis/log/log', os.path.basename(test_path))
 
 lines = read_txt(test_path)
 for line in lines:
