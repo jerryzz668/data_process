@@ -1,10 +1,11 @@
 import numpy as np
 import os, time
 from utils import read_txt, write_txt
+from tqdm import tqdm
 
-# test_path = 'data_analysis/log/ori_log/demo_d_current_pop-02-01.txt'
-test_path = 'data_analysis/log/ori_log/demo_d_new_population-02-01.txt'
-# test_path = 'data_analysis/log/ori_log/demo_c_current_pop-01-30.txt'
+# test_path = 'data_analysis/log/ori_log/demo_d_current_pop-02-04.txt'
+test_path = 'data_analysis/log/ori_log/demo_d_new_population-02-04.txt'
+
 new_name = os.path.basename(test_path).split('.')[0] + '_format.txt'
 format_save_path = os.path.join(os.path.dirname(test_path), new_name)
 
@@ -19,7 +20,7 @@ for line in lines:
 # time.sleep(2)
 data = read_txt(format_save_path)
 
-for i in range(len(data)):
+for i in tqdm(range(len(data))):
     data[i] = data[i].replace('array(', '')
     data[i] = data[i].replace(')', '')
     data[i] = data[i].replace('[', '')
