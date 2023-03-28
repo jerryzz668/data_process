@@ -5,7 +5,7 @@ from utils import read_txt
 
 # 输入要求  1. 需要无表头，格式为    序号  分数  路线
 # 输入要求  2. 不可以有空行
-input_dir = "/home/jerry/Desktop/CS_TEAM_MCTS/multi_step/EA_to-be-verified/demo_a.txt"
+input_dir = "/home/jerry/Desktop/CS_TEAM_MCTS/multi_step/EA_to-be-verified/demo_a2.txt"
 data = read_txt(input_dir)
 output_dir = input_dir.split('.')[0]
 if not os.path.exists(output_dir):
@@ -25,4 +25,5 @@ for i,line in enumerate(data):
         else:
             canonical_smi = Chem.MolToSmiles(mol)
             canonical_mol = Chem.MolFromSmiles(canonical_smi)
-            Draw.MolToImageFile(canonical_mol, output_dir + "/mol_route{}_num_{}.jpg".format(i+1,j+1))
+            # Draw.MolToImageFile(canonical_mol, output_dir + "/mol_route{}_num_{}.jpg".format(i+1,j+1))
+            Draw.MolToFile(canonical_mol, output_dir + "/mol_route{}_num_{}.png".format(i+1,j+1), size=(600, 600), imageType='png', dpi=1200)
