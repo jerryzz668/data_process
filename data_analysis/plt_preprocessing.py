@@ -3,8 +3,8 @@ import os, time
 from utils import read_txt, write_txt
 from tqdm import tqdm
 
-test_path = 'data_analysis/log/ori_log/demo_d_current_pop-02-07.txt'
-# test_path = 'data_analysis/log/ori_log/demo_d_new_population-02-07.txt'
+test_path = 'data_analysis/log/ori_log/demo_d_current_pop-02-17.txt'
+# test_path = 'data_analysis/log/ori_log/demo_d_new_population-02-17.txt'
 
 new_name = os.path.basename(test_path).split('.')[0] + '_format.txt'
 format_save_path = os.path.join(os.path.dirname(test_path), new_name)

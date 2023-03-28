@@ -6,8 +6,8 @@ from matplotlib.widgets import Slider
 from sklearn.manifold import TSNE
 
 
-txt_path = 'data_analysis/log/log/demo_d_current_pop-02-07.txt'
-new_pop_txt_path = 'data_analysis/log/log/demo_d_new_population-02-07.txt'
+txt_path = 'data_analysis/log/log/demo_d_current_pop-02-17.txt'
+new_pop_txt_path = 'data_analysis/log/log/demo_d_new_population-02-17.txt'
 # txt_path = 'log/demo_c_current_pop-01-30.txt'
 # new_pop_txt_path = 'log/demo_c_new_population-01-30.txt'
 
@@ -19,7 +19,7 @@ def all_data2xydata(data):
     all_data = []  # list中每个元素都是42*8的二维数组
     for line in data:
         float_line = list(map(eval, line.split(',')))
-        line_data = np.array(float_line).reshape(24,10)  # 二维矩阵(42*8), 每个种群8=7+1   ------------------------->这里参数需要封装
+        line_data = np.array(float_line).reshape(30,9)  # 二维矩阵(42*8), 每个种群8=7+1   --------------------->这里参数需要封装pop_size*(step_len+1)
         all_data.append(line_data)
 
     xdata, ydata = [], []
