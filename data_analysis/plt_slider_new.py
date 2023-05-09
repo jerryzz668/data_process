@@ -6,10 +6,14 @@ from matplotlib.widgets import Slider
 from sklearn.manifold import TSNE
 
 
-txt_path = 'data_analysis/log/log/demo_d_current_pop-02-17.txt'
-new_pop_txt_path = 'data_analysis/log/log/demo_d_new_population-02-17.txt'
-# txt_path = 'log/demo_c_current_pop-01-30.txt'
-# new_pop_txt_path = 'log/demo_c_new_population-01-30.txt'
+# txt_path = 'data_analysis/log/log/demo_d_current_pop-02-17.txt'
+# new_pop_txt_path = 'data_analysis/log/log/demo_d_new_population-02-17.txt'
+# txt_path = 'data_analysis/log/log/demo_c_current_pop-01-30.txt'
+# new_pop_txt_path = 'data_analysis/log/log/demo_c_new_population-01-30.txt'
+# txt_path = 'data_analysis/log/log/demo_b_current_pop-01-26.txt'
+# new_pop_txt_path = 'data_analysis/log/log/demo_b_new_population-01-26.txt'
+txt_path = 'data_analysis/log/log/demo_a_current_pop-01-12.txt'
+new_pop_txt_path = 'data_analysis/log/log/demo_a_new_population-01-12.txt'
 
 curr_pop = read_txt(txt_path)
 new_pop = read_txt(new_pop_txt_path)
@@ -19,7 +23,7 @@ def all_data2xydata(data):
     all_data = []  # list中每个元素都是42*8的二维数组
     for line in data:
         float_line = list(map(eval, line.split(',')))
-        line_data = np.array(float_line).reshape(30,9)  # 二维矩阵(42*8), 每个种群8=7+1   --------------------->这里参数需要封装pop_size*(step_len+1)
+        line_data = np.array(float_line).reshape(42,7)  # d(30,9),abc(42,7)二维矩阵(42*8), 每个种群8=7+1   --------------------->这里参数需要封装pop_size*(step_len+1)
         all_data.append(line_data)
 
     xdata, ydata = [], []
@@ -55,12 +59,15 @@ ax.autoscale(True)
 plt.subplots_adjust(left=0.25, bottom=0.25)
 
 # plot first data set
-frame = 0
+frame = 25
 ln, = ax.plot(curr_pop_xdata[frame],curr_pop_ydata[frame], 'ro')
 # ln_1, = ax.plot(curr_pop_xdata[frame+1],curr_pop_ydata[frame+1], '^')
 ln_1, = ax.plot(new_pop_xdata[frame],new_pop_ydata[frame], '^')
 
 plt.axis([0, 1, 0, 1])  # 设置范围，四个数分别对应x的起点终点和y的起点终点
+# plt.xlabel('iter', fontsize=10)
+# plt.ylabel('fitness', fontsize=10)
+plt.title('iter {}'.format(frame), fontsize=10)
 # make the slider
 axframe = plt.axes([0.25, 0.1, 0.65, 0.03])
 sframe = Slider(axframe, 'Frame', 0, len(curr_pop_xdata), valinit=0,valfmt='%d')  # ------------------------->这里参数需要封装
@@ -81,7 +88,8 @@ def update(val):
 
 # connect callback to slider   
 sframe.on_changed(update)
-plt.show()
+# plt.show()
+plt.savefig("/home/jerry/Desktop/log_curve/xxx/demo_a-{}.png".format(frame),dpi=500,bbox_inches = 'tight')#解决图片不清晰，不完整的问题
 
 
 
